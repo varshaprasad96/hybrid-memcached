@@ -10,8 +10,10 @@ resources:
 - api:
     crdVersion: v1
     namespaced: true
+  controller: true
   domain: my.domain
-  group: demo
-  kind: Nginx
+  group: cache
+  kind: Memcached
+  path: github.com/example/memcached-operator/api/v1alpha1
   version: v1alpha1
 version: "3"

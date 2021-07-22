@@ -1,42 +1,15 @@
+
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
+  creationTimestamp: null
   name: manager-role
 rules:
-##
-## Base operator rules
-##
-# We need to get namespaces so the operator can read namespaces to ensure they exist
 - apiGroups:
-  - ""
+  - cache.my.domain
   resources:
-  - namespaces
-  verbs:
-  - get
-# We need to manage Helm release secrets
-- apiGroups:
-  - ""
-  resources:
-  - secrets
-  verbs:
-  - "*"
-# We need to create events on CRs about things happening during reconciliation
-- apiGroups:
-  - ""
-  resources:
-  - events
-  verbs:
-  - create
-
-##
-## Rules for demo.my.domain/v1alpha1, Kind: Nginx
-##
-- apiGroups:
-  - demo.my.domain
-  resources:
-  - nginxes
-  - nginxes/status
-  - nginxes/finalizers
+  - memcacheds
   verbs:
   - create
   - delete
@@ -45,18 +18,17 @@ rules:
   - patch
   - update
   - watch
-- verbs:
-  - "*"
-  apiGroups:
-  - "apps"
+- apiGroups:
+  - cache.my.domain
   resources:
-  - "deployments"
-- verbs:
-  - "*"
-  apiGroups:
-  - ""
+  - memcacheds/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - cache.my.domain
   resources:
-  - "serviceaccounts"
-  - "services"
-
-#+kubebuilder:scaffold:rules
+  - memcacheds/status
+  verbs:
+  - get
+  - patch
+  - update
