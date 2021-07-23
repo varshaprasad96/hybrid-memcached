@@ -1,13 +1,13 @@
-# permissions for end users to edit gremlins.
+# permissions for end users to edit nginxes.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: gremlin-editor-role
+  name: nginx-editor-role
 rules:
 - apiGroups:
-  - charts.my.domain
+  - demo.my.domain
   resources:
-  - gremlins
+  - nginxes
   verbs:
   - create
   - delete
@@ -17,8 +17,8 @@ rules:
   - update
   - watch
 - apiGroups:
-  - charts.my.domain
+  - demo.my.domain
   resources:
-  - gremlins/status
+  - nginxes/status
   verbs:
   - get

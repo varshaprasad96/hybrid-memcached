@@ -35,7 +35,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/healthz"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	cachev1alpha1 "github.com/example/memcached-operator/apis/cache/v1alpha1"
+	cachev1 "github.com/example/memcached-operator/apis/cache/v1"
 	cachecontrollers "github.com/example/memcached-operator/controllers/cache"
 	//+kubebuilder:scaffold:imports
 )
@@ -50,7 +50,7 @@ var (
 func init() {
 	utilruntime.Must(clientgoscheme.AddToScheme(scheme))
 
-	utilruntime.Must(cachev1alpha1.AddToScheme(scheme))
+	utilruntime.Must(cachev1.AddToScheme(scheme))
 	//+kubebuilder:scaffold:scheme
 }
 
