@@ -1,6 +1,7 @@
 domain: my.domain
 layout:
 - hybrid.helm.sdk.operatorframework.io/v1-alpha
+multigroup: true
 plugins:
   manifests.sdk.operatorframework.io/v2: {}
   scorecard.sdk.operatorframework.io/v2: {}
@@ -11,7 +12,16 @@ resources:
     crdVersion: v1
     namespaced: true
   domain: my.domain
-  group: demo
-  kind: Nginx
+  group: charts
+  kind: Gremlin
+  version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: my.domain
+  group: cache
+  kind: Memcached
+  path: github.com/example/memcached-operator/apis/cache/v1alpha1
   version: v1alpha1
 version: "3"
